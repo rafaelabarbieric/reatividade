@@ -21,6 +21,7 @@ function diminuir() {
   const soma = computed (() => {
    return contador.contador1 + contador.contador2;
   })
+  
 </script>
 
 <template>
@@ -38,7 +39,14 @@ function diminuir() {
 </div>
 <div>
     <h1 v-if="soma > 10">Soma = {{ soma }} (SOMA MAIOR QUE 10!)</h1>
-    <h1 v-else="soma < 10">Soma = {{ soma }} (SOMA MENOR QUE 10!)</h1>
-  </div>
+    <h1 v-else>Soma = {{ soma }} (SOMA MENOR QUE 10!)</h1>
+</div>
+<div>
+    <h1 v-if="soma == 0">(ESSA SOMA É ...!)</h1>
+    <h1 v-else-if="soma%2 == 0">(ESSA SOMA É PAR!)</h1>
+    <h1 v-else>(ESSA SOMA É ÍMPAR!)</h1>
+</div>
+<div>
+</div>
   
 </template>
