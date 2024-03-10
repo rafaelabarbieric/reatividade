@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, computed } from 'vue';
 
 
 const contador = reactive({
@@ -7,25 +7,38 @@ const contador = reactive({
   contador2: 0,
 })
 
-const incrementarContador = (item) => {
-  contador[item]++
-}
-
-const decrementarContador = (item) => {
-  if (contador(item)>0) {
-    contador[item]--
+function decrementar() {
+  if(contador.contador1 > 0){
+    contador.contador1--
   }
 }
-
-
+function diminuir() {
+  if(contador.contador2 > 0){
+    contador.contador2--
+  }
+}
   
+  const soma = computed (() => {
+   return contador.contador1 + contador.contador2;
+  })
 </script>
 
 <template>
   
+  <div>
   <h1>{{contador.contador1}}</h1>
-  <button @click="incrementarContador('contador1')">+</button>
-  <button @click="decrementarContador('contador1')">-</button>
-  
+  <button @click="contador.contador1++">+</button>
+  <button @click="decrementar()">-</button>
+</div>
+
+<div>
+  <h1>{{contador.contador2}}</h1>
+  <button @click="contador.contador2++">+</button>
+  <button @click="diminuir()">-</button>
+</div>
+<div>
+    <h1 v-if="soma > 10">Soma = {{ soma }} (SOMA MAIOR QUE 10!)</h1>
+    <h1 v-else="soma < 10">Soma = {{ soma }} (SOMA MENOR QUE 10!)</h1>
+  </div>
   
 </template>
